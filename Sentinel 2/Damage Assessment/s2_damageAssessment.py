@@ -1,13 +1,16 @@
+# Overview of the Processing Pipeline
 '''
-Processing Pipeline A -> Read - Resample - Subset - Write
-Processing Pipeline B -> Collocate - Sea Mask - Band Maths - Export
+Processing Pipeline A -> Read - Resample - Subset - Collocate - Sea Mask - Band Maths - Export (Write)
 '''
+
+# Import Relevant Modules
 import datetime
 import os
 from snappy import ProductIO, HashMap, WKTReader, GPF, jpy
 import shapefile
 import pygeoif
 
+# Define Helper Functions
 def getFilePaths(data_dir):
     files = []
     for f in os.listdir(data_dir):
@@ -31,7 +34,7 @@ def identifyMasterSlaveFiles(data_dir):
     slave = [fn for fn in filePaths if str(max(dates)) in fn]
     return master[0], slave[0]
 
-
+# Define Processing Functions  
 def read(filename):
     return ProductIO.readProduct(filename)
 
@@ -107,9 +110,11 @@ def write(inFile, outFilePath, format=None):
     # GeoTIFF+XML,PolSARPro,NetCDF-CF,NetCDF-BEAM,ENVI,JP2,
     # Generic Binary BSQ,Gamma,CSV,NetCDF4-CF,GeoTIFF,NetCDF4-BEAM
 
+# Set path
 path_S2_data = 'E:\Work\Independent Projects\Damage Assessment Israel-Gaza Conflict 2021\Data\Sentinel 2'
 processing_dir = "E:\Work\Independent Projects\Damage Assessment Israel-Gaza Conflict 2021\Processed\S2"
 
+# Define Processing Pipeline
 if __name__ == '__main__':
     start = datetime.datetime.now()
     print(f'Time Started: {start}')
