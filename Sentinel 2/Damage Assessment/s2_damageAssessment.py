@@ -48,8 +48,6 @@ def resample(inFile, referenceBand):
     parameters.put('resampleOnPyramidLevels', True)
     return GPF.createProduct('Resample', parameters, inFile)
 
-# Subset
-gazaDistrictExtent_shp = r"E:\\Work\\Independent Projects\\Damage Assessment Israel-Gaza Conflict 2021\\Data\\Shapefile\\GazaDistrictExtent.shp"
 
 def subset(inFile, shpPath):
     shp_file = shapefile.Reader(shpPath)
@@ -110,9 +108,11 @@ def write(inFile, outFilePath, format=None):
     # GeoTIFF+XML,PolSARPro,NetCDF-CF,NetCDF-BEAM,ENVI,JP2,
     # Generic Binary BSQ,Gamma,CSV,NetCDF4-CF,GeoTIFF,NetCDF4-BEAM
 
-# Set path
+# Set directory paths
 path_S2_data = 'E:\Work\Independent Projects\Damage Assessment Israel-Gaza Conflict 2021\Data\Sentinel 2'
 processing_dir = "E:\Work\Independent Projects\Damage Assessment Israel-Gaza Conflict 2021\Processed\S2"
+# Set shapefile path
+gazaDistrictExtent_shp = r"E:\\Work\\Independent Projects\\Damage Assessment Israel-Gaza Conflict 2021\\Data\\Shapefile\\GazaDistrictExtent.shp"
 
 # Define Processing Pipeline
 if __name__ == '__main__':
